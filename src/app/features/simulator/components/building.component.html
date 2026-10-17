@@ -1,0 +1,115 @@
+<section class="panel building-panel" aria-labelledby="building-title">
+  <div class="panel-heading building-heading">
+    <div class="heading-group">
+      <h2 id="building-title">Building</h2>
+      <span class="building-meta">3 elevators / 5 floors</span>
+    </div>
+    <div class="playback" aria-label="Playback controls">
+      <button
+        class="square-button pause-button"
+        (click)="togglePause.emit()"
+        [attr.aria-label]="paused() ? 'Resume simulation' : 'Pause simulation'"
+        [attr.aria-pressed]="paused()"
+        [title]="paused() ? 'Resume' : 'Pause'"
+      >
+        <app-icon [name]="paused() ? 'play' : 'pause'" />
+      </button>
+      <div class="speed-control" aria-label="Simulation speed">
+        @for (value of speeds; track value) {
+          <button
+            class="speed-button"
+            [class.active]="speed() === value"
+            [attr.aria-pressed]="speed() === value"
+            [attr.aria-label]="'Speed ' + value + 'x'"
+            (click)="changeSpeed.emit(value)"
+          >
+            {{ value }}x
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="building-model" [class.is-paused]="paused()">
+    <div class="shaft-labels">
+      @for (elevator of elevators(); track elevator.id) {
+        <button
+          class="shaft-label"
+          [attr.data-elevator]="elevator.id"
+          [class.selected]="selectedId() === elevator.id"
+          [attr.aria-label]="'Select elevator ' + elevator.id"
+          [attr.aria-pressed]="selectedId() === elevator.id"
+          (click)="selectElevator.emit(elevator.id)"
+        >
+          <span class="elevator-dot"></span>{{ elevator.id
+          }}<span class="shaft-state">{{ stateLabels[elevator.state] }}</span>
+        </button>
+      }
+    </div>
+    <div class="building-stage">
+      <div class="floor-rows">
+        @for (floor of floors; track floor.number) {
+          <div class="floor-row">
+            <div class="floor-label">
+              <span class="floor-number">0{{ floor.number }}</span
+              ><span class="floor-name">{{ floor.name }}</span>
+            </div>
+            <div class="floor-corridor" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div
+              class="hall-buttons"
+              [attr.aria-label]="'Call an elevator on floor ' + floor.number"
+            >
+              @if (floor.number < 5) {
+                <button
+                  class="call-button"
+                  [class.pending]="pending(floor.number, 'up')"
+                  [attr.data-elevator]="pending(floor.number, 'up')?.assignedElevatorId"
+                  [disabled]="!!pending(floor.number, 'up')"
+                  [attr.aria-label]="'Floor ' + floor.number + ': call elevator going up'"
+                  [title]="
+                    pending(floor.number, 'up')
+                      ? 'Assigned elevator: ' + pending(floor.number, 'up')?.assignedElevatorId
+                      : 'Call elevator going up'
+                  "
+                  (click)="hallCall.emit({ floor: floor.number, direction: 'up' })"
+                >
+                  <app-icon name="up" />
+                </button>
+              }
+              @if (floor.number > 1) {
+                <button
+                  class="call-button"
+                  [class.pending]="pending(floor.number, 'down')"
+                  [attr.data-elevator]="pending(floor.number, 'down')?.assignedElevatorId"
+                  [disabled]="!!pending(floor.number, 'down')"
+                  [attr.aria-label]="'Floor ' + floor.number + ': call elevator going down'"
+                  [title]="
+                    pending(floor.number, 'down')
+                      ? 'Assigned elevator: ' + pending(floor.number, 'down')?.assignedElevatorId
+                      : 'Call elevator going down'
+                  "
+                  (click)="hallCall.emit({ floor: floor.number, direction: 'down' })"
+                >
+                  <app-icon name="down" />
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <div class="shafts">
+        @for (elevator of elevators(); track elevator.id) {
+          <app-elevator-shaft
+            [elevator]="elevator"
+            [selected]="selectedId() === elevator.id"
+            (select)="selectElevator.emit($event)"
+          />
+        }
+      </div>
+    </div>
+  </div>
+  <p class="panel-note">
+    <app-icon name="info" /><span
+      >Choose a direction on any floor. The dispatcher will assign an elevator.</span
+    >
+  </p>
+</section>

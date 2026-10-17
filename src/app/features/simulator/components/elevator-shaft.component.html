@@ -1,0 +1,42 @@
+<div class="shaft-track" [attr.data-elevator]="elevator().id" [class.selected]="selected()">
+  <div class="shaft">
+    <div class="rail rail-left"></div>
+    <div class="rail rail-right"></div>
+    <div class="cable"></div>
+  </div>
+  <button
+    class="elevator-car"
+    [class.moving]="elevator().state.startsWith('moving')"
+    [class.doors-open]="elevator().doorProgress > 0"
+    [style.--position]="(5 - elevator().position) * 20 + '%'"
+    [style.--floor-position]="(5 - elevator().floor) * 20 + '%'"
+    [style.--door-open]="elevator().doorProgress"
+    [style.--door-resting-open]="elevator().state === 'open' ? 1 : 0"
+    [attr.aria-label]="
+      'Elevator ' +
+      elevator().id +
+      ', floor ' +
+      elevator().floor +
+      ', ' +
+      stateLabels[elevator().state]
+    "
+    [attr.aria-pressed]="selected()"
+    (click)="select.emit(elevator().id)"
+  >
+    <div class="car-shell">
+      <div class="car-interior">
+        <span>{{ elevator().id }}</span>
+        <div class="interior-rail"></div>
+      </div>
+      <div class="door door-left"></div>
+      <div class="door door-right"></div>
+      <div class="car-sill"></div>
+    </div>
+    <span class="car-indicator" aria-hidden="true"
+      >{{ elevator().id
+      }}<span>{{
+        elevator().state === 'moving-up' ? '↑' : elevator().state === 'moving-down' ? '↓' : '•'
+      }}</span></span
+    >
+  </button>
+</div>

@@ -1,0 +1,53 @@
+<dialog #help class="help-dialog" aria-labelledby="help-title" (click)="closeHelp($event)">
+  <form method="dialog">
+    <button class="square-button close-help" aria-label="Close help">
+      <app-icon name="close" />
+    </button>
+  </form>
+  <span class="dialog-symbol" aria-hidden="true">↕</span>
+  <h2 id="help-title">Small building.<br />Plenty of states.</h2>
+  <p class="help-intro">
+    Each elevator has its own route and state machine. The dispatcher decides which one handles the
+    next call.
+  </p>
+  <ol class="help-steps">
+    <li>
+      <strong>Call an elevator</strong>
+      <span
+        >The arrows on each floor set your direction. The button color shows which elevator is
+        assigned. On the first floor, you can go up. On the fifth floor, you can go down.</span
+      >
+    </li>
+    <li>
+      <strong>Pick your destination</strong>
+      <span
+        >Click an elevator or its A, B, or C tab, then select a floor in the control panel. You can
+        add multiple stops, even while the elevator is moving.</span
+      >
+    </li>
+    <li>
+      <strong>Watch the transitions</strong>
+      <span
+        >Moving → opening → boarding → closing. Once the doors close, the elevator continues its
+        route or returns to idle. A call on its current floor opens the doors without a trip.</span
+      >
+    </li>
+    <li>
+      <strong>Experiment</strong>
+      <span
+        >Pause freezes both the simulation and its animation. Speed up time with 2x or 4x. Running a
+        scenario resets the building and starts a repeatable sequence of trips.</span
+      >
+    </li>
+  </ol>
+  <p class="help-footnote">
+    The dispatcher considers distance, direction, and queued stops. Wait time is measured in
+    simulation time until the doors fully open. This is a control model: passengers, capacity, and
+    emergency modes are not simulated.
+  </p>
+  <form method="dialog">
+    <button class="button button-primary help-start">
+      Got it. Let's go <app-icon name="arrow" />
+    </button>
+  </form>
+</dialog>

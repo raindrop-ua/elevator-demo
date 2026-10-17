@@ -1,0 +1,181 @@
+:host {
+  display: block;
+  position: relative;
+  min-width: 0;
+}
+.shaft-track {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.shaft {
+  width: 76px;
+  height: 100%;
+  position: absolute;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(20% - 2px),
+      #9ca5ad66 calc(20% - 2px),
+      #9ca5ad66 20%
+    ),
+    linear-gradient(
+      90deg,
+      #20272d,
+      #343c42 12%,
+      #131b22 17%,
+      #2b353d 50%,
+      #182027 84%,
+      #424a50 90%,
+      #242b30
+    );
+  border-inline: 5px solid #9da6ac;
+  box-shadow:
+    0 0 0 3px #818a9180,
+    4px 0 10px #19202825,
+    -4px 0 10px #19202825;
+}
+.rail {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(90deg, #adb5bc, #354049, #8e999f);
+  top: 0;
+}
+.rail-left {
+  left: 7px;
+}
+.rail-right {
+  right: 7px;
+}
+.cable {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  width: 5px;
+  border-inline: 1px solid #9da7ac;
+  background: repeating-linear-gradient(#263139 0 3px, #78858e 3px 4px);
+  transform: translateX(-50%);
+}
+.elevator-car {
+  --visual-door-open: var(--door-open);
+  position: absolute;
+  top: var(--position);
+  width: 70px;
+  height: 20%;
+  padding: 12px 0 10px;
+  background: none;
+  border: 0;
+  z-index: 4;
+  pointer-events: auto;
+  will-change: top;
+}
+.car-shell {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 3px solid var(--elevator-color);
+  box-shadow:
+    0 0 0 2px #17242c,
+    0 0 14px var(--elevator-color),
+    inset 0 0 0 1px #fff;
+  background: #151e27;
+}
+.car-interior {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 9px 14px #fff4,
+    inset 0 -4px 10px #000;
+  background: linear-gradient(90deg, #4f555e, #2b303b 20%, #343b45 80%, #5b6069);
+}
+.car-interior span {
+  font: 600 14px var(--mono);
+  color: #ffffffbd;
+}
+.interior-rail {
+  position: absolute;
+  top: 70%;
+  height: 2px;
+  width: 85%;
+  background: #9ca7ad;
+  box-shadow: 0 2px 1px #111;
+}
+.door {
+  position: absolute;
+  width: 50%;
+  inset-block: 0;
+  background: linear-gradient(105deg, #e1e4e5 0%, #aeb6ba 25%, #d6dbde 47%, #8e989f 100%);
+  box-shadow:
+    inset 0 1px 2px #fff,
+    inset 0 -3px 2px #69737b;
+}
+.door-left {
+  left: 0;
+  border-right: 1px solid #27313a;
+  transform: translateX(calc(var(--visual-door-open) * -100%));
+}
+.door-right {
+  right: 0;
+  border-left: 1px solid #e4e8ea;
+  transform: translateX(calc(var(--visual-door-open) * 100%));
+}
+.car-sill {
+  position: absolute;
+  height: 3px;
+  bottom: 0;
+  inset-inline: 0;
+  background: #ccd3d9;
+}
+.car-indicator {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 22px;
+  top: 2px;
+  min-width: 26px;
+  height: 12px;
+  border: 1px solid #727d87;
+  border-radius: 2px;
+  background: #141d24;
+  color: var(--elevator-color);
+  font: 8px var(--mono);
+}
+.moving .car-shell {
+  box-shadow:
+    0 0 0 2px #17242c,
+    0 0 22px var(--elevator-color);
+}
+@media (max-width: 600px) {
+  .shaft {
+    width: 46px;
+    border-inline-width: 3px;
+  }
+  .elevator-car {
+    width: 44px;
+    padding-top: 13px;
+    padding-bottom: 12px;
+  }
+  .car-shell {
+    border-width: 2px;
+  }
+  .car-indicator {
+    left: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .elevator-car {
+    --visual-door-open: var(--door-resting-open);
+    top: var(--floor-position);
+    will-change: auto;
+  }
+  .moving .car-shell {
+    box-shadow: 0 0 0 2px #17242c;
+  }
+}

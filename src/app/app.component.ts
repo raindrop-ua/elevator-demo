@@ -1,12 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { SimulatorComponent } from '@features/simulator/simulator.component';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [SimulatorComponent],
   selector: 'app-root',
   styleUrl: './app.component.css',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  protected readonly title = signal('elevator-demo');
-}
+export class AppComponent {}

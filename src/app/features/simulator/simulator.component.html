@@ -1,0 +1,76 @@
+<a class="skip-link" href="#simulation">Skip to simulator</a>
+<div class="app-shell">
+  <header class="app-header">
+    <div class="brand">
+      <svg class="brand-symbol" viewBox="0 0 24 32" aria-hidden="true">
+        <path d="M1 11 10 1l9 10h-6v20H7V11Z" fill="#7650e7" />
+        <path d="m23 21-9 10-9-10h6V1h6v20Z" fill="#b6a0ff" opacity=".8" /></svg
+      ><span class="brand-name">LEVEL</span><span class="brand-description">Elevator Lab</span>
+    </div>
+    <div class="header-actions">
+      <span class="system-status" [class.paused]="simulation.paused()"
+        ><i></i
+        >{{
+          simulation.paused()
+            ? 'System paused'
+            : simulation.activeCount()
+              ? 'System running'
+              : 'System ready'
+        }}</span
+      ><button class="help-button" aria-label="How it works" (click)="helpDialog.open()">
+        <app-icon name="help" /><span>How it works</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="simulation">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <h1 id="page-title">Everything under control.</h1>
+        <p>Three elevators. Five floors. Every move has a reason.</p>
+      </div>
+      <div class="intro-actions">
+        <button class="button button-secondary" (click)="reset()">
+          <app-icon name="reset" /><span>Reset</span></button
+        ><button class="button button-primary" (click)="runScenario()">
+          <app-icon name="play" /><span>{{
+            simulation.scenarioRunning() ? 'Restart scenario' : 'Run scenario'
+          }}</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="simulation-layout">
+      <app-building
+        [elevators]="simulation.snapshot().elevators"
+        [requests]="simulation.snapshot().requests"
+        [selectedId]="simulation.selectedId()"
+        [paused]="simulation.paused()"
+        [speed]="simulation.speed()"
+        (hallCall)="call($event.floor, $event.direction)"
+        (selectElevator)="simulation.selectElevator($event)"
+        (togglePause)="simulation.togglePause()"
+        (changeSpeed)="simulation.setSpeed($event)"
+      />
+      <aside class="inspector" aria-label="Elevator inspector">
+        <app-cabin-panel
+          [elevator]="simulation.selectedElevator()"
+          (selectElevator)="simulation.selectElevator($event)"
+          (goTo)="goTo($event)"
+        />
+        <app-state-machine [elevator]="simulation.selectedElevator()" />
+      </aside>
+    </div>
+
+    <app-simulation-stats [snapshot]="simulation.snapshot()" />
+
+    <app-event-log [events]="simulation.snapshot().events" [paused]="simulation.paused()" />
+  </main>
+  <footer>
+    <span><strong>LEVEL</strong> — a state machine playground</span
+    ><span>Angular <i>·</i> TypeScript</span>
+  </footer>
+</div>
+<p class="sr-only" role="status">{{ announcement() }}</p>
+
+<app-help-dialog #helpDialog />

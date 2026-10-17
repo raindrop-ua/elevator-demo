@@ -1,0 +1,41 @@
+<section class="panel metrics" aria-label="Call statistics">
+  <div class="metric">
+    <div class="metric-icon"><app-icon name="queue" /></div>
+    <div>
+      <span class="metric-label">Queued</span
+      ><strong data-testid="queue-count">{{ snapshot().requests.length }}</strong>
+    </div>
+  </div>
+  <div class="metric">
+    <div class="metric-icon"><app-icon name="check" /></div>
+    <div>
+      <span class="metric-label">Served</span
+      ><strong data-testid="served-count">{{ snapshot().servedCalls }}</strong>
+    </div>
+  </div>
+  <div class="metric">
+    <div class="metric-icon"><app-icon name="clock" /></div>
+    <div>
+      <span class="metric-label">Average wait</span
+      ><strong
+        >{{ snapshot().servedCalls ? (snapshot().averageWaitMs / 1000 | number: '1.1-1') : '—' }}
+        @if (snapshot().servedCalls) {
+          <small>s</small>
+        }
+      </strong>
+    </div>
+  </div>
+</section>
+
+@if (snapshot().requests.length) {
+  <div class="request-queue" aria-label="Active calls">
+    @for (request of snapshot().requests; track request.id) {
+      <span class="request-item" [attr.data-elevator]="request.assignedElevatorId"
+        ><span>Floor {{ request.floor }}</span
+        ><app-icon [name]="request.direction === 'up' ? 'up' : 'down'" /><app-icon
+          name="arrow"
+        /><strong>Elevator {{ request.assignedElevatorId }}</strong></span
+      >
+    }
+  </div>
+}

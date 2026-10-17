@@ -1,0 +1,60 @@
+<section
+  class="panel cabin-panel"
+  aria-labelledby="cabin-title"
+  [attr.data-elevator]="elevator().id"
+>
+  <h2 id="cabin-title">Elevator controls</h2>
+  <div class="elevator-tabs" aria-label="Select an elevator">
+    @for (id of ids; track id) {
+      <button
+        [attr.data-elevator]="id"
+        [class.active]="elevator().id === id"
+        [attr.aria-pressed]="elevator().id === id"
+        (click)="selectElevator.emit(id)"
+      >
+        Elevator {{ id }}
+      </button>
+    }
+  </div>
+  <div class="cabin-readout">
+    <div class="current-floor">
+      <span class="label">Current floor</span
+      ><span class="floor-display">0{{ elevator().floor }}</span
+      ><span class="floor-caption">{{ floorName(elevator().floor) }}</span>
+    </div>
+    <div class="current-state">
+      <span class="label">Status</span
+      ><span class="state-label"><i></i>{{ labels[elevator().state] }}</span
+      ><span class="door-status">{{
+        elevator().state === 'idle'
+          ? 'Doors closed'
+          : elevator().state === 'open'
+            ? 'Doors open'
+            : elevator().targetFloor !== null
+              ? 'To floor ' + elevator().targetFloor
+              : 'Floor ' + elevator().floor
+      }}</span>
+    </div>
+  </div>
+  <div class="destination-heading">
+    <h3>Where to?</h3>
+    <span>{{
+      elevator().stops.length ? 'Stops: ' + elevator().stops.join(' · ') : 'Select a floor'
+    }}</span>
+  </div>
+  <div class="destination-buttons" aria-label="Destination floor">
+    @for (floor of floors; track floor) {
+      <button
+        class="destination-button"
+        [class.current]="elevator().floor === floor"
+        [class.queued]="elevator().stops.includes(floor)"
+        [disabled]="elevator().stops.includes(floor)"
+        [attr.aria-label]="'Elevator ' + elevator().id + ': go to floor ' + floor"
+        [attr.aria-pressed]="elevator().stops.includes(floor)"
+        (click)="goTo.emit(floor)"
+      >
+        {{ floor }}<span class="stop-dot" aria-hidden="true"></span>
+      </button>
+    }
+  </div>
+</section>
