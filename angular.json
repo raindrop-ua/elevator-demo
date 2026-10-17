@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "pnpm"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -11,15 +11,15 @@
       "schematics": {
         "@schematics/angular:component": {
           "type": "component",
-          "addTypeToClassName": false
+          "addTypeToClassName": true
         },
         "@schematics/angular:directive": {
           "type": "directive",
-          "addTypeToClassName": false
+          "addTypeToClassName": true
         },
         "@schematics/angular:service": {
           "type": "service",
-          "addTypeToClassName": false
+          "addTypeToClassName": true
         },
         "@schematics/angular:guard": {
           "typeSeparator": "."
