@@ -1,5 +1,7 @@
 # Elevator Lab
 
+![LEVEL — Elevator Lab, with three colorful elevator cars in a five-floor cutaway building](public/og-image.png)
+
 An interactive lab with three elevators, five floors, and a state machine you can watch in action.
 Call an elevator, choose a destination inside a car, and follow its route, doors,
 request queue, and state transitions.
@@ -25,8 +27,26 @@ pnpm serve:ssr:elevator-demo
 ```
 
 The server listens on port 4000 (or `PORT`). The local hosts `localhost` and `127.0.0.1`
-are allowed in `angular.json`. For deployment, allow your domain through `NG_ALLOWED_HOSTS`
-or an explicit `security.allowedHosts` list.
+and the production host `elevatorlab.antonsizov.cloud` are allowed in `angular.json`.
+
+## SEO and social previews
+
+The canonical URL is [elevatorlab.antonsizov.cloud](https://elevatorlab.antonsizov.cloud/).
+The homepage is prerendered, so its content and metadata are available without JavaScript.
+`src/index.html` defines the title, description, canonical URL, indexing directives,
+Open Graph and Twitter large-image cards, and `WebApplication` JSON-LD in American English.
+`public/robots.txt` points crawlers to the single-page `public/sitemap.xml`.
+
+The social preview is `public/og-image.png`, a 1200 × 630 PNG also embedded above.
+It was created with the built-in image generation tool; the prompts are saved in
+[`docs/og-image-prompt.txt`](docs/og-image-prompt.txt).
+The Express server caches the image, robots file, and sitemap for one hour so updates
+can be revalidated, while other static assets retain their existing cache policy.
+
+Run `pnpm build && pnpm check:seo` to verify the generated HTML, crawl files, image, and
+README reference. This check also runs in CI through `pnpm validate`.
+If the production domain changes, update the URLs in `src/index.html`, both crawl files,
+the allowed host in `angular.json`, and the expected origin in `scripts/check-seo.mjs`.
 
 ## Things to try
 
@@ -49,6 +69,7 @@ src/app/
 scripts/
   check-architecture.mjs       TypeScript AST checks for dependency direction
   check-architecture.test.mjs  Independent file fixtures for the checker itself
+  check-seo.mjs                Production HTML, crawl files, and social image checks
 ```
 
 This is a small layered architecture with one owner of the simulation state. Components
@@ -130,13 +151,14 @@ pnpm lint                # Architecture + strict TypeScript
 pnpm test:architecture   # Fixtures, including attempts to bypass layer boundaries
 pnpm test --watch=false  # Domain and Angular application layer
 pnpm build               # Production browser/server build and template checks
+pnpm check:seo           # Check SEO artifacts after a production build
 pnpm format:check        # Check formatting without changing files
 pnpm format              # Apply Prettier
 pnpm validate            # Complete CI validation sequence
 ```
 
 Both `strict` and `strictTemplates` are enabled. The `validate` command checks formatting,
-architecture, checker fixtures, unit tests, and the production build. It does not run a
+architecture, checker fixtures, unit tests, the production build, and SEO artifacts. It does not run a
 separate TypeScript check because the build already checks TypeScript and Angular templates.
 GitHub Actions installs dependencies with `--frozen-lockfile` and runs `validate`.
 
