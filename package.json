@@ -8,13 +8,14 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "check:architecture": "node scripts/check-architecture.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
     "test:architecture": "node --test scripts/check-architecture.test.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.app.json",
     "lint": "pnpm check:architecture && pnpm typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "hooks:install": "git config core.hooksPath .githooks",
-    "validate": "pnpm format:check && pnpm check:architecture && pnpm test:architecture && pnpm test --watch=false && pnpm build",
+    "validate": "pnpm format:check && pnpm check:architecture && pnpm test:architecture && pnpm test --watch=false && pnpm build && pnpm check:seo",
     "serve:ssr:elevator-demo": "node dist/elevator-demo/server/server.mjs"
   },
   "private": true,
@@ -33,14 +34,19 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular-eslint/builder": "22.6.0",
     "@angular/build": "^22.2.0",
     "@angular/cli": "^22.2.0",
     "@angular/compiler-cli": "^22.2.0",
+    "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.1",
     "@types/node": "^22.12.0",
+    "angular-eslint": "22.6.0",
+    "eslint": "^10.12.0",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
+    "typescript-eslint": "8.71.0",
     "vitest": "^5.0.0"
   }
 }

@@ -5,7 +5,7 @@ import {
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
 import express from 'express';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
@@ -32,6 +32,12 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
+    setHeaders: (res, filePath) => {
+      // These public URLs stay stable when their content changes between releases.
+      if (['robots.txt', 'sitemap.xml', 'og-image.png'].includes(basename(filePath))) {
+        res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+      }
+    },
   }),
 );
 
