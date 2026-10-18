@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://elevatorlab.antonsizov.cloud/sitemap.xml
+Sitemap: https://elevatorlab.antonsizov.rocks/sitemap.xml
