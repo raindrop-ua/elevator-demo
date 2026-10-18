@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
-const canonicalUrl = 'https://elevatorlab.antonsizov.cloud/';
+const canonicalUrl = 'https://elevatorlab.antonsizov.rocks/';
 const imageUrl = new URL('og-image.png', canonicalUrl).href;
 const imageWidth = 1200;
 const imageHeight = 630;

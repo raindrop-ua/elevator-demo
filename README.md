@@ -27,11 +27,26 @@ pnpm serve:ssr:elevator-demo
 ```
 
 The server listens on port 4000 (or `PORT`). The local hosts `localhost` and `127.0.0.1`
-and the production host `elevatorlab.antonsizov.cloud` are allowed in `angular.json`.
+and the production host `elevatorlab.antonsizov.rocks` are allowed in `angular.json`.
+
+## Docker
+
+Build and run the production SSR image:
+
+```bash
+docker build -t elevator-demo .
+docker run --rm -p 4200:4200 --name elevator-demo elevator-demo
+```
+
+Open [localhost:4200](http://localhost:4200/). The container runs as the non-root `node`
+user and checks the homepage every 30 seconds. Its default port is 4200; if you
+override `PORT`, update the container side of the port mapping too.
+`NG_ALLOWED_HOSTS` defaults to `elevatorlab.antonsizov.rocks,localhost,127.0.0.1`
+and can be overridden when deploying to another hostname.
 
 ## SEO and social previews
 
-The canonical URL is [elevatorlab.antonsizov.cloud](https://elevatorlab.antonsizov.cloud/).
+The canonical URL is [elevatorlab.antonsizov.rocks](https://elevatorlab.antonsizov.rocks/).
 The homepage is prerendered, so its content and metadata are available without JavaScript.
 `src/index.html` defines the title, description, canonical URL, indexing directives,
 Open Graph and Twitter large-image cards, and `WebApplication` JSON-LD in American English.
