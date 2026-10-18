@@ -2,33 +2,41 @@
   display: block;
   min-width: 0;
 }
+
 .building-panel {
   padding: 20px 20px 0;
   height: 100%;
 }
+
 .building-heading {
   margin-bottom: 16px;
 }
+
 .heading-group,
 .playback,
 .speed-control {
   display: flex;
   align-items: center;
 }
+
 .heading-group {
   gap: 18px;
 }
+
 .building-meta {
   font-size: 12px;
   color: var(--muted);
   white-space: nowrap;
 }
+
 .playback {
   gap: 12px;
 }
+
 .speed-control {
   gap: 5px;
 }
+
 .speed-button {
   width: 36px;
   height: 36px;
@@ -38,11 +46,13 @@
   color: var(--muted);
   font: 12px var(--mono);
 }
+
 .speed-button.active {
   background: var(--accent-soft);
   color: var(--accent-dark);
   border-color: #c4b2ff;
 }
+
 .building-model {
   --floor-label: 102px;
   --call-width: 110px;
@@ -52,6 +62,7 @@
   overflow: hidden;
   background: #fff;
 }
+
 .shaft-labels {
   margin-left: var(--floor-label);
   margin-right: var(--call-width);
@@ -60,6 +71,7 @@
   height: 38px;
   align-items: center;
 }
+
 .shaft-label {
   display: flex;
   align-items: center;
@@ -74,19 +86,23 @@
   padding: 0 8px;
   color: var(--text);
 }
+
 .shaft-label.selected {
   background: var(--elevator-soft);
 }
+
 .shaft-state {
   font: 10px var(--sans);
   color: var(--muted);
 }
+
 .elevator-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--elevator-color);
 }
+
 .building-stage {
   position: relative;
   height: 440px;
@@ -94,21 +110,25 @@
   border-bottom: 1px solid #d5d9e0;
   margin-bottom: 6px;
 }
+
 .floor-rows {
   position: absolute;
   inset: 0;
   display: grid;
   grid-template-rows: repeat(5, 1fr);
 }
+
 .floor-row {
   position: relative;
   display: grid;
   grid-template-columns: var(--floor-label) 1fr var(--call-width);
   min-height: 0;
 }
+
 .floor-row + .floor-row {
   border-top: 1px solid #d1d5dc;
 }
+
 .floor-label {
   padding-left: 14px;
   display: flex;
@@ -118,26 +138,31 @@
   background: #fff;
   z-index: 2;
 }
+
 .floor-number {
   font-size: 32px;
   letter-spacing: -1px;
   font-weight: 650;
   line-height: 1.15;
 }
+
 .floor-name {
   font-size: 10px;
   color: var(--muted);
 }
+
 .floor-corridor {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background: linear-gradient(90deg, #e6e8eb, #f6f7f8 8%, #dce0e4 50%, #f6f7f8 92%, #e6e8eb);
 }
+
 .floor-corridor i {
   position: relative;
   border-bottom: 4px solid #c6ccd2;
   box-shadow: inset 0 5px 7px #151c2720;
 }
+
 .floor-corridor i::before {
   content: '';
   position: absolute;
@@ -149,6 +174,7 @@
   border-radius: 50%;
   box-shadow: 0 6px 13px 6px #fff9e4d0;
 }
+
 .hall-buttons {
   display: flex;
   align-items: center;
@@ -158,6 +184,7 @@
   z-index: 3;
   background: #fff;
 }
+
 .call-button {
   width: 34px;
   height: 34px;
@@ -176,11 +203,13 @@
     box-shadow 0.18s,
     transform 0.18s;
 }
+
 .call-button:hover:not(:disabled) {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
   transform: translateY(-1px);
 }
+
 .call-button.pending {
   color: var(--elevator-ink);
   background: var(--elevator-soft);
@@ -189,6 +218,7 @@
   opacity: 1;
   cursor: wait;
 }
+
 .shafts {
   position: absolute;
   inset: 0 var(--call-width) 0 var(--floor-label);
@@ -196,76 +226,97 @@
   grid-template-columns: repeat(3, 1fr);
   pointer-events: none;
 }
+
 .panel-note {
   min-height: 48px;
 }
+
 @media (max-width: 1200px) {
   .shaft-state {
     display: none;
   }
+
   .heading-group {
     gap: 10px;
   }
+
   .building-panel {
     padding: 16px 12px 0;
   }
+
   .building-model {
     --floor-label: 84px;
     --call-width: 98px;
   }
+
   .floor-label {
     padding-left: 9px;
   }
 }
+
 @media (max-width: 600px) {
   .building-panel {
     padding: 16px 10px 0;
   }
+
   .building-heading {
     gap: 10px;
   }
+
   .building-meta {
     display: none;
   }
+
   .playback {
     gap: 8px;
   }
+
   .building-model {
     --floor-label: 48px;
     --call-width: 72px;
     padding-inline: 3px;
   }
+
   .floor-name {
     display: none;
   }
+
   .floor-number {
     font-size: 24px;
   }
+
   .floor-label {
     padding-left: 3px;
   }
+
   .building-stage {
     height: 380px;
   }
+
   .call-button {
     width: 29px;
     height: 29px;
   }
+
   .call-button app-icon {
     width: 17px;
     height: 17px;
   }
+
   .hall-buttons {
     gap: 5px;
   }
+
   .floor-corridor i::before {
     left: 2px;
     width: 8px;
   }
+
   .panel-note {
     padding: 12px 0;
     font-size: 10px;
   }
+
   .shaft-label {
     padding: 0 5px;
   }
