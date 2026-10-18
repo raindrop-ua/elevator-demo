@@ -3,12 +3,14 @@
   position: relative;
   min-width: 0;
 }
+
 .shaft-track {
   height: 100%;
   position: relative;
   display: flex;
   justify-content: center;
 }
+
 .shaft {
   width: 76px;
   height: 100%;
@@ -37,6 +39,7 @@
     4px 0 10px #19202825,
     -4px 0 10px #19202825;
 }
+
 .rail {
   position: absolute;
   width: 3px;
@@ -44,12 +47,15 @@
   background: linear-gradient(90deg, #adb5bc, #354049, #8e999f);
   top: 0;
 }
+
 .rail-left {
   left: 7px;
 }
+
 .rail-right {
   right: 7px;
 }
+
 .cable {
   position: absolute;
   left: 50%;
@@ -59,6 +65,7 @@
   background: repeating-linear-gradient(#263139 0 3px, #78858e 3px 4px);
   transform: translateX(-50%);
 }
+
 .elevator-car {
   --visual-door-open: var(--door-open);
   position: absolute;
@@ -72,6 +79,7 @@
   pointer-events: auto;
   will-change: top;
 }
+
 .car-shell {
   position: relative;
   height: 100%;
@@ -83,6 +91,7 @@
     inset 0 0 0 1px #fff;
   background: #151e27;
 }
+
 .car-interior {
   position: absolute;
   inset: 0;
@@ -93,10 +102,12 @@
     inset 0 -4px 10px #000;
   background: linear-gradient(90deg, #4f555e, #2b303b 20%, #343b45 80%, #5b6069);
 }
+
 .car-interior span {
   font: 600 14px var(--mono);
   color: #ffffffbd;
 }
+
 .interior-rail {
   position: absolute;
   top: 70%;
@@ -105,6 +116,7 @@
   background: #9ca7ad;
   box-shadow: 0 2px 1px #111;
 }
+
 .door {
   position: absolute;
   width: 50%;
@@ -114,16 +126,19 @@
     inset 0 1px 2px #fff,
     inset 0 -3px 2px #69737b;
 }
+
 .door-left {
   left: 0;
   border-right: 1px solid #27313a;
   transform: translateX(calc(var(--visual-door-open) * -100%));
 }
+
 .door-right {
   right: 0;
   border-left: 1px solid #e4e8ea;
   transform: translateX(calc(var(--visual-door-open) * 100%));
 }
+
 .car-sill {
   position: absolute;
   height: 3px;
@@ -131,6 +146,7 @@
   inset-inline: 0;
   background: #ccd3d9;
 }
+
 .car-indicator {
   display: flex;
   gap: 3px;
@@ -147,34 +163,41 @@
   color: var(--elevator-color);
   font: 8px var(--mono);
 }
+
 .moving .car-shell {
   box-shadow:
     0 0 0 2px #17242c,
     0 0 22px var(--elevator-color);
 }
+
 @media (max-width: 600px) {
   .shaft {
     width: 46px;
     border-inline-width: 3px;
   }
+
   .elevator-car {
     width: 44px;
     padding-top: 13px;
     padding-bottom: 12px;
   }
+
   .car-shell {
     border-width: 2px;
   }
+
   .car-indicator {
     left: 9px;
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .elevator-car {
     --visual-door-open: var(--door-resting-open);
     top: var(--floor-position);
     will-change: auto;
   }
+
   .moving .car-shell {
     box-shadow: 0 0 0 2px #17242c;
   }

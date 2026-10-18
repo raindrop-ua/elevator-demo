@@ -1,11 +1,13 @@
 :host {
   display: block;
 }
+
 .app-shell {
   max-width: 1536px;
   margin: 0 auto;
   padding: 0 32px;
 }
+
 .app-header {
   height: 60px;
   display: flex;
@@ -14,6 +16,7 @@
   gap: 24px;
   border-bottom: 1px solid var(--line);
 }
+
 .brand,
 .header-actions,
 .brand-description,
@@ -22,18 +25,22 @@
   display: flex;
   align-items: center;
 }
+
 .brand {
   gap: 11px;
 }
+
 .brand-symbol {
   width: 21px;
   height: 29px;
 }
+
 .brand-name {
   font-size: 25px;
   font-weight: 750;
   letter-spacing: -1px;
 }
+
 .brand-description {
   border-left: 1px solid var(--line);
   margin-left: 5px;
@@ -41,14 +48,17 @@
   color: var(--muted);
   font-size: 12px;
 }
+
 .header-actions {
   gap: 22px;
 }
+
 .system-status {
   gap: 9px;
   font-size: 12px;
   color: #485368;
 }
+
 .system-status i {
   width: 7px;
   height: 7px;
@@ -56,10 +66,12 @@
   background: #10ac7b;
   box-shadow: 0 0 0 4px #10ac7b0c;
 }
+
 .system-status.paused i {
   background: #b68726;
   box-shadow: 0 0 0 4px #b687260c;
 }
+
 .help-button {
   gap: 9px;
   background: none;
@@ -69,13 +81,16 @@
   color: var(--muted);
   font-size: 12px;
 }
+
 .help-button:hover {
   color: var(--accent);
 }
+
 .help-button app-icon {
   width: 17px;
   height: 17px;
 }
+
 .intro {
   display: flex;
   align-items: center;
@@ -83,35 +98,41 @@
   gap: 24px;
   padding: 12px 0 15px;
 }
+
 .intro h1 {
   font-size: clamp(30px, 3.3vw, 46px);
   line-height: 1.1;
   letter-spacing: -1.9px;
   font-weight: 700;
 }
+
 .intro p {
   margin: 8px 0 0;
   color: var(--muted);
   font-size: 15px;
   letter-spacing: -0.2px;
 }
+
 .intro-actions {
   display: flex;
   gap: 12px;
   flex-shrink: 0;
 }
+
 .simulation-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.95fr) minmax(320px, 1fr);
   gap: 16px;
   align-items: stretch;
 }
+
 .inspector {
   display: flex;
   flex-direction: column;
   gap: 16px;
   min-width: 0;
 }
+
 footer {
   display: flex;
   justify-content: space-between;
@@ -119,122 +140,154 @@ footer {
   font-size: 10px;
   padding: 22px 1px 24px;
 }
+
 footer strong {
   font-weight: 650;
 }
+
 footer i {
   font-style: normal;
   padding-inline: 5px;
 }
+
 @media (max-width: 1200px) {
   .app-shell {
     padding: 0 24px;
   }
+
   .intro p {
     font-size: 13px;
   }
+
   .intro-actions {
     gap: 8px;
   }
+
   .intro-actions .button {
     padding-inline: 15px;
     font-size: 12px;
   }
+
   .simulation-layout {
     grid-template-columns: minmax(0, 1.8fr) minmax(310px, 1fr);
   }
 }
+
 @media (max-width: 900px) {
   .app-shell {
     padding: 0 20px;
   }
+
   .brand-description {
     display: none;
   }
+
   .intro {
     align-items: flex-start;
     flex-direction: column;
     gap: 20px;
   }
+
   .intro h1 {
     font-size: 38px;
   }
+
   .intro p {
     font-size: 14px;
   }
+
   .simulation-layout {
     grid-template-columns: 1fr;
   }
+
   .inspector {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
   }
+
   .intro-actions .button {
     padding-inline: 18px;
     font-size: 13px;
   }
 }
+
 @media (max-width: 600px) {
   .app-shell {
     padding: 0 14px;
   }
+
   .app-header {
     height: 67px;
     gap: 12px;
   }
+
   .brand-name {
     font-size: 23px;
   }
+
   .brand {
     gap: 8px;
   }
+
   .header-actions {
     gap: 14px;
   }
+
   .system-status {
     font-size: 10px;
     gap: 6px;
   }
+
   .help-button {
     border-left: 0;
     padding: 8px 0 8px 2px;
   }
+
   .help-button span {
     display: none;
   }
+
   .help-button app-icon {
     height: 20px;
     width: 20px;
   }
+
   .intro {
     padding: 26px 0 22px;
   }
+
   .intro h1 {
     font-size: 32px;
     letter-spacing: -1.5px;
   }
+
   .intro p {
     font-size: 12px;
     max-width: 300px;
     line-height: 1.65;
     margin-top: 9px;
   }
+
   .intro-actions {
     width: 100%;
     gap: 9px;
   }
+
   .intro-actions .button {
     padding: 12px 14px;
     font-size: 11px;
     gap: 8px;
   }
+
   .intro-actions .button-primary {
     flex: 1;
   }
+
   .inspector {
     grid-template-columns: 1fr;
   }
+
   footer {
     font-size: 8px;
     gap: 8px;
