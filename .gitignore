@@ -46,3 +46,6 @@ Thumbs.db
 
 # Local browser verification artifacts
 .playwright-mcp/
+
+# Husky generated hook wrappers
+.husky/_/

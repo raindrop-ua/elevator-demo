@@ -5,11 +5,13 @@ FROM node:24-alpine AS build
 WORKDIR /app
 
 ENV CI=true
+ENV HUSKY=0
 ENV NG_CLI_ANALYTICS=false
 
 RUN corepack enable pnpm
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY .husky/install.mjs .husky/install.mjs
 
 RUN --mount=type=cache,id=elevator-demo-pnpm-store,target=/pnpm/store \
     pnpm install --frozen-lockfile --store-dir=/pnpm/store

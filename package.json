@@ -14,9 +14,10 @@
     "lint": "pnpm check:architecture && pnpm typecheck",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "hooks:install": "git config core.hooksPath .githooks",
+    "hooks:install": "node .husky/install.mjs",
     "validate": "pnpm format:check && pnpm check:architecture && pnpm test:architecture && pnpm test --watch=false && pnpm build && pnpm check:seo",
-    "serve:ssr:elevator-demo": "node dist/elevator-demo/server/server.mjs"
+    "serve:ssr:elevator-demo": "node dist/elevator-demo/server/server.mjs",
+    "prepare": "node .husky/install.mjs"
   },
   "private": true,
   "packageManager": "pnpm@12.14.0",
@@ -43,6 +44,7 @@
     "@types/node": "^22.12.0",
     "angular-eslint": "22.6.0",
     "eslint": "^10.12.0",
+    "husky": "9.1.7",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",

@@ -175,14 +175,19 @@ pnpm validate            # Complete CI validation sequence
 Both `strict` and `strictTemplates` are enabled. The `validate` command checks formatting,
 architecture, checker fixtures, unit tests, the production build, and SEO artifacts. It does not run a
 separate TypeScript check because the build already checks TypeScript and Angular templates.
-GitHub Actions installs dependencies with `--frozen-lockfile` and runs `validate`.
+GitHub Actions runs on pushes to `main` and `develop` and on pull requests. It installs
+dependencies with `--frozen-lockfile` and runs `validate` on Node.js 24 with the pinned
+pnpm version. Superseded runs are canceled; each job has a 15-minute timeout.
 
-The local pre-commit hook checks formatting and layer boundaries. It is installed explicitly
-and does not change Git settings during dependency installation:
+Husky installs the local pre-commit hook automatically during `pnpm install`. The hook
+checks formatting, layer boundaries, and TypeScript. To reinstall it manually:
 
 ```bash
 pnpm hooks:install
 ```
+
+Hook installation is skipped in CI, production installs, Docker builds, when `.git` is
+absent, or when `HUSKY=0`. Generated Husky wrappers in `.husky/_/` are not committed.
 
 Angular class and file names keep their suffixes: `ExampleComponent`,
 `example.component.ts`, `SimulationService`, and `simulation.service.ts`.
