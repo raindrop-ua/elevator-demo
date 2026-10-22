@@ -93,6 +93,15 @@ send commands to `SimulationService` and read readonly signals. The facade manag
 assignment rules stay in the domain. Components do not create their own timers or mutate
 domain objects directly.
 
+Every new Angular component must have separate `example.component.ts`,
+`example.component.html`, and `example.component.css` files. Keep the class and metadata
+in TypeScript, and reference external templates and styles using `templateUrl` and
+`styleUrl` (or `styleUrls`). Inline `template` and `styles` are not allowed, including in
+small components and test components. Keep the CSS file even when it is initially empty.
+When modifying an existing component with inline templates or styles, extract them into
+the corresponding files without changing behavior or appearance. These rules also live
+in [AGENTS.md](AGENTS.md) for future agent work.
+
 | Layer                        | Allowed internal dependencies                       | Alias            |
 | ---------------------------- | --------------------------------------------------- | ---------------- |
 | `domain`                     | `domain` only                                       | `@domain/*`      |
