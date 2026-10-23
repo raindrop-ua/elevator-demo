@@ -1,0 +1,14 @@
+<div class="theme-switcher" role="group" aria-label="Color theme">
+  @for (mode of modes; track mode.value) {
+    <button
+      type="button"
+      [attr.aria-label]="mode.label + ' theme'"
+      [attr.aria-pressed]="theme.preference() === mode.value"
+      [attr.title]="mode.label + ' theme'"
+      (click)="theme.select(mode.value)"
+    >
+      <app-icon [name]="mode.icon" />
+      <span>{{ mode.label }}</span>
+    </button>
+  }
+</div>

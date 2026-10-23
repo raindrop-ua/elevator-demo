@@ -10,16 +10,56 @@
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  --canvas: #f5f6f9;
-  --text: #11151f;
-  --muted: #5e687d;
-  --line: #e2e6ee;
-  --accent: #7851ee;
-  --accent-dark: #5c36ca;
-  --accent-soft: #f0eaff;
+  --canvas: light-dark(#f5f6f9, #10131b);
+  --canvas-glow: light-dark(#eef0ff66, #7851ee0d);
+  --surface: light-dark(#fff, #191d29);
+  --surface-recessed: light-dark(#f0f2f6, #131721);
+  --surface-hover: light-dark(#fff, #232938);
+  --text: light-dark(#11151f, #edf0f8);
+  --text-secondary: light-dark(#485368, #c2cadb);
+  --muted: light-dark(#5e687d, #a2adc2);
+  --line: light-dark(#e2e6ee, #2c3344);
+  --line-strong: light-dark(#bcc4d2, #46526b);
+  --accent: light-dark(#7851ee, #b297ff);
+  --accent-dark: light-dark(#5c36ca, #c6b2ff);
+  --accent-soft: light-dark(#f0eaff, #302544);
+  --accent-line: light-dark(#c4b2ff, #69508f);
+  --panel-shadow: light-dark(#1c234702, #00000020);
+  --control-border: light-dark(#c5cad4, #53607b);
+  --control-top: light-dark(#fff, #30394d);
+  --control-bottom: light-dark(#e7eaf0, #222938);
+  --control-highlight: light-dark(#fff, #ffffff0d);
+  --control-surface: linear-gradient(var(--control-top), var(--control-bottom));
+  --control-shadow: 0 2px 3px #1f293711, inset 0 1px 1px var(--control-highlight);
+  --floor-line: light-dark(#d1d5dc, #3b4558);
+  --corridor-edge: light-dark(#e6e8eb, #272e3c);
+  --corridor-mid: light-dark(#dce0e4, #202633);
+  --corridor-lit: light-dark(#f6f7f8, #323a4b);
+  --corridor-sill: light-dark(#c6ccd2, #4a566b);
+  --corridor-light: light-dark(#fffdf2, #ded1ff);
+  --corridor-glow: light-dark(#fff9e4d0, #bfa0ff24);
+  --corridor-surface: linear-gradient(
+    90deg,
+    var(--corridor-edge),
+    var(--corridor-lit) 8%,
+    var(--corridor-mid) 50%,
+    var(--corridor-lit) 92%,
+    var(--corridor-edge)
+  );
+  --diagram-line: light-dark(#9aa3b4, #7e8ba5);
+  --dialog-backdrop: light-dark(#171b2b70, #050810b3);
+  background: var(--canvas);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 *,
@@ -30,7 +70,7 @@
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse at 5% 0%, #eef0ff66, transparent 45%), var(--canvas);
+  background: radial-gradient(ellipse at 5% 0%, var(--canvas-glow), transparent 45%), var(--canvas);
   color: var(--text);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
@@ -82,10 +122,10 @@ h3 {
 }
 
 .panel {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 12px;
-  box-shadow: 0 2px 7px #1c234702;
+  box-shadow: 0 2px 7px var(--panel-shadow);
 }
 
 .panel-heading {
@@ -107,7 +147,7 @@ h3 {
 .panel-note app-icon {
   width: 17px;
   height: 17px;
-  color: #7d879b;
+  color: var(--muted);
 }
 
 .button {
@@ -145,21 +185,21 @@ h3 {
 }
 
 .button-secondary {
-  border-color: #bcc4d2;
+  border-color: var(--line-strong);
   background: transparent;
   color: var(--text);
 }
 
 .button-secondary:hover {
-  background: #fff;
-  border-color: #9aa5b9;
+  background: var(--surface-hover);
+  border-color: var(--control-border);
 }
 
 .square-button {
   width: 36px;
   height: 36px;
-  border: 1px solid #d5dae4;
-  background: #fff;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
   border-radius: 8px;
   display: inline-grid;
   place-items: center;
@@ -174,20 +214,23 @@ h3 {
 
 [data-elevator='A'] {
   --elevator-color: #9463ff;
-  --elevator-soft: #f0eaff;
-  --elevator-ink: #6941c6;
+  --elevator-soft: light-dark(#f0eaff, #302544);
+  --elevator-ink: light-dark(#6941c6, #c9afff);
+  --elevator-fill: #6941c6;
 }
 
 [data-elevator='B'] {
   --elevator-color: #f1bc56;
-  --elevator-soft: #fff5dc;
-  --elevator-ink: #896013;
+  --elevator-soft: light-dark(#fff5dc, #392e1e);
+  --elevator-ink: light-dark(#896013, #f3ca79);
+  --elevator-fill: #896013;
 }
 
 [data-elevator='C'] {
   --elevator-color: #52d5af;
-  --elevator-soft: #e6f8f0;
-  --elevator-ink: #11795b;
+  --elevator-soft: light-dark(#e6f8f0, #18372f);
+  --elevator-ink: light-dark(#11795b, #7ce0bd);
+  --elevator-fill: #11795b;
 }
 
 .sr-only {

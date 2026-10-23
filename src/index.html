@@ -11,6 +11,27 @@
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f5f6f9" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Keep the key and colors in sync with shared/theme/theme.service.ts.
+      // This runs before styles and app bundles, including on a first visit.
+      (() => {
+        let theme = 'system';
+        try {
+          const saved = localStorage.getItem('level-theme');
+          if (saved === 'light' || saved === 'dark') theme = saved;
+        } catch {}
+        document.documentElement.setAttribute('data-theme', theme);
+        // Critical CSS may omit attribute selectors absent from the server HTML.
+        document.documentElement.style.colorScheme = theme === 'system' ? 'light dark' : theme;
+        const dark =
+          theme === 'dark' ||
+          (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', dark ? '#10131b' : '#f5f6f9');
+      })();
+    </script>
     <link rel="canonical" href="https://elevatorlab.antonsizov.rocks/" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 

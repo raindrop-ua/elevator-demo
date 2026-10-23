@@ -71,6 +71,20 @@ the allowed host in `angular.json`, and the expected origin in `scripts/check-se
 - Run the demo scenario, pause the simulation, or increase the speed to 2× / 4×.
 - Watch the selected car's current state and the event log. Reset restores the initial state
   and clears requests, statistics, and the scenario.
+- Choose System, Light, or Dark in the header. System follows your device's appearance,
+  including changes while the page is open. Your choice is saved across visits and synced
+  between tabs; it remains usable for the current page if browser storage is blocked.
+
+## Color themes
+
+Semantic CSS tokens in `src/styles.css` use `light-dark()` with the root `color-scheme`.
+The default is the system preference, including without JavaScript. A small synchronous
+script in `src/index.html` applies a saved choice before the page paints, without waiting
+for Angular or hydration. It sets `color-scheme` directly on the root so a saved override
+also works before noncritical CSS loads. `shared/theme/theme.service.ts` takes over after
+browser rendering to manage the controls, storage, system changes, and browser toolbar color.
+Keep its storage key and toolbar colors in sync with the head script. There is no page-wide
+color transition during startup.
 
 ## Project structure
 

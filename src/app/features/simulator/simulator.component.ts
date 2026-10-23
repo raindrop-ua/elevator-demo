@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { SimulationService } from '@application/simulation.service';
 import type { Direction } from '@domain/elevator';
 import { IconComponent } from '@shared/ui/icon.component';
+import { ThemeSwitcherComponent } from '@shared/ui/theme-switcher.component';
 import { BuildingComponent } from './components/building.component';
 import { CabinPanelComponent } from './components/cabin-panel.component';
 import { StateMachineComponent } from './components/state-machine.component';
@@ -13,6 +14,7 @@ import { SimulationStatsComponent } from './components/simulation-stats.componen
   selector: 'app-simulator',
   imports: [
     IconComponent,
+    ThemeSwitcherComponent,
     BuildingComponent,
     CabinPanelComponent,
     StateMachineComponent,
