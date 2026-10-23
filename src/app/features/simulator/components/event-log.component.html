@@ -1,0 +1,24 @@
+<section class="panel event-panel" aria-labelledby="event-title">
+  <div class="panel-heading">
+    <h2 id="event-title">Event log</h2>
+    <span class="live-label"
+      ><i [class.paused]="paused()"></i>{{ paused() ? 'Paused' : 'Live updates' }}</span
+    >
+  </div>
+  <div class="event-list" tabindex="0" role="region" aria-label="Recent simulation events">
+    @for (event of events(); track event.id) {
+      <div class="event-row">
+        <time>{{ formatTime(event.time) }}</time
+        ><span class="event-elevator" [attr.data-elevator]="event.elevatorId">{{
+          event.elevatorId ?? 'SYS'
+        }}</span
+        ><span class="event-message">{{ event.message }}</span>
+      </div>
+    } @empty {
+      <div class="event-row">
+        <time>00:00.0</time><span class="event-elevator">SYS</span
+        ><span>Ready for the first call</span>
+      </div>
+    }
+  </div>
+</section>
