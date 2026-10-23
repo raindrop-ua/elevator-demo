@@ -1,6 +1,9 @@
 import { Component, input } from '@angular/core';
 
 const ICONS = {
+  monitor: 'M3 3h18v13H3ZM12 16v5M8 21h8',
+  sun: 'M12 3V1M12 23v-2M3 12H1M23 12h-2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0',
+  moon: 'M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z',
   up: 'm6 15 6-6 6 6',
   down: 'm6 9 6 6 6-6',
   arrow: 'M5 12h14m-5-5 5 5-5 5',
@@ -19,29 +22,8 @@ export type IconName = keyof typeof ICONS;
 
 @Component({
   selector: 'app-icon',
-  template: `<svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="1.65"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    aria-hidden="true"
-  >
-    <path [attr.d]="icons[name()]" [attr.fill]="name() === 'play' ? 'currentColor' : 'none'" />
-  </svg>`,
-  styles: `
-    :host {
-      display: inline-flex;
-      width: 1.25rem;
-      height: 1.25rem;
-      flex: 0 0 auto;
-    }
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  `,
+  templateUrl: './icon.component.html',
+  styleUrl: './icon.component.css',
 })
 export class IconComponent {
   readonly name = input.required<IconName>();
