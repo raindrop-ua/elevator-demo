@@ -7,11 +7,11 @@
   padding: 32px;
   color: var(--text);
   box-shadow: 0 20px 100px #151b3240;
-  background: #fff;
+  background: var(--surface);
 }
 
 .help-dialog::backdrop {
-  background: #171b2b70;
+  background: var(--dialog-backdrop);
   backdrop-filter: blur(5px);
 }
 

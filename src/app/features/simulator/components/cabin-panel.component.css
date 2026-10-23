@@ -115,19 +115,19 @@
   position: relative;
   width: 52px;
   height: 52px;
-  border: 1px solid #cbd1dc;
+  border: 1px solid var(--control-border);
   border-radius: 50%;
-  background: linear-gradient(#fff, #eceff5);
+  background: var(--control-surface);
   font: 600 22px var(--sans);
   color: var(--text);
-  box-shadow: inset 0 2px 0 #fff;
+  box-shadow: inset 0 2px 0 var(--control-highlight);
   transition: 0.18s ease;
 }
 
 .destination-button.current {
   color: #fff;
-  background: linear-gradient(135deg, var(--elevator-color), var(--elevator-ink));
-  border-color: #ffffff;
+  background: var(--elevator-fill);
+  border-color: var(--surface);
   box-shadow:
     0 0 0 1px var(--elevator-color),
     inset 0 0 0 2px #ffffff35;
