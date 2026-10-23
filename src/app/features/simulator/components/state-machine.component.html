@@ -1,0 +1,60 @@
+<section
+  class="panel machine-panel"
+  aria-labelledby="machine-title"
+  [attr.data-elevator]="elevator().id"
+>
+  <div class="panel-heading">
+    <h2 id="machine-title">State machine</h2>
+    <span class="machine-id">{{ elevator().id }}</span>
+  </div>
+  <div
+    class="state-diagram"
+    role="img"
+    [attr.aria-label]="'Elevator state for ' + elevator().id + ': ' + elevator().state"
+  >
+    <svg class="connections" viewBox="0 0 400 140" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <marker
+          [id]="'arrow-' + elevator().id"
+          markerWidth="6"
+          markerHeight="6"
+          refX="5"
+          refY="3"
+          orient="auto"
+        >
+          <path d="m0 0 6 3-6 3" fill="var(--diagram-line)" />
+        </marker>
+      </defs>
+      <g
+        fill="none"
+        stroke="var(--diagram-line)"
+        stroke-width="1.15"
+        [attr.marker-end]="'url(#arrow-' + elevator().id + ')'"
+      >
+        <path d="M113 32h26" />
+        <path d="M257 32h25" />
+        <path d="M383 34C412 34 403 110 362 110h-12" />
+        <path d="M244 110h-61" />
+        <path d="M72 110H42C-5 110-2 32 17 32" />
+      </g>
+    </svg>
+    <div class="state-node idle" [class.active]="elevator().state === 'idle'">
+      Idle<span>idle</span>
+    </div>
+    <div class="state-node moving" [class.active]="elevator().state.startsWith('moving')">
+      Moving<span>{{ elevator().state === 'moving-down' ? 'moving-down' : 'moving-up' }}</span>
+    </div>
+    <div class="state-node opening" [class.active]="elevator().state === 'opening'">
+      Opening<span>opening</span>
+    </div>
+    <div class="state-node open" [class.active]="elevator().state === 'open'">
+      Boarding<span>open</span>
+    </div>
+    <div class="state-node closing" [class.active]="elevator().state === 'closing'">
+      Closing<span>closing</span>
+    </div>
+  </div>
+  <p class="panel-note">
+    <app-icon name="info" /><span>Select an elevator to watch its state transitions.</span>
+  </p>
+</section>

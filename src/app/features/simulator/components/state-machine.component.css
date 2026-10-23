@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  min-width: 0;
+  flex: 1;
+}
+.machine-panel {
+  padding: 20px 20px 0;
+  height: 100%;
+}
+.machine-id {
+  background: var(--elevator-soft);
+  color: var(--elevator-ink);
+  font: 600 11px var(--mono);
+  border-radius: 5px;
+  padding: 4px 7px;
+}
+.state-diagram {
+  height: 120px;
+  margin: 16px -7px 0;
+  position: relative;
+}
+.connections {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.state-node {
+  position: absolute;
+  width: 26%;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: linear-gradient(var(--control-top), var(--surface-recessed));
+  color: var(--text-secondary);
+  font-size: 10px;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.state-node span {
+  font: 8px var(--mono);
+  color: var(--muted);
+}
+.state-node.active {
+  border-color: var(--elevator-color);
+  background: var(--elevator-soft);
+  color: var(--elevator-ink);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--elevator-soft), transparent 50%);
+}
+.state-node.active span {
+  color: var(--elevator-ink);
+}
+.idle {
+  top: 4px;
+  left: 4%;
+}
+.moving {
+  top: 4px;
+  left: 37%;
+}
+.opening {
+  top: 4px;
+  right: 4%;
+}
+.open {
+  top: 72px;
+  right: 13%;
+}
+.closing {
+  top: 72px;
+  left: 18%;
+}
+.panel-note {
+  min-height: 48px;
+  font-size: 10px;
+}
+@media (max-width: 1120px) {
+  .machine-panel {
+    padding: 16px 16px 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .state-node {
+    transition: none;
+  }
+}
